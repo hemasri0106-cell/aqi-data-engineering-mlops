@@ -10,61 +10,61 @@ flowchart TD
 
     %% SOURCE LAYER
     subgraph Source_Layer [1. SOURCE LAYER]
-        A1["OpenAQ API v3<br>Pollution Data"] ::: source
-        A2["Open-Meteo API v1<br>Weather Data"] ::: source
+        A1["OpenAQ API v3<br>Pollution Data"]
+        A2["Open-Meteo API v1<br>Weather Data"]
     end
 
     %% INGESTION LAYER
     subgraph Ingestion_Layer [2. INGESTION LAYER - Airflow Orchestrated]
-        B1["Python Requests / Pandas<br>Pollution Collector"] ::: ingest
-        B2["Python Requests / Pandas<br>Weather Collector"] ::: ingest
+        B1["Python Requests / Pandas<br>Pollution Collector"]
+        B2["Python Requests / Pandas<br>Weather Collector"]
     end
 
     %% RAW LANDING LAYER
     subgraph Raw_Landing_Layer [3. RAW LANDING LAYER]
-        C1[("data/raw/pollution/<br>Raw JSON")] ::: raw
-        C2[("data/raw/weather/<br>Raw JSON")] ::: raw
-        C3["Extraction Metadata & Logs"] ::: raw
+        C1[("data/raw/pollution/<br>Raw JSON")]
+        C2[("data/raw/weather/<br>Raw JSON")]
+        C3["Extraction Metadata & Logs"]
     end
 
     %% STAGING & TRANSFORMATION LAYER
     subgraph Transformation_Layer [4. STAGING / TRANSFORMATION]
-        D1["Timestamp Normalization<br>(UTC Flooring)"] ::: transform
-        D2["Station & Unit<br>Normalization"] ::: transform
-        D3["Pollution & Weather Join<br>by City/Station/Time"] ::: transform
-        D4["Pollutant Aggregation<br>(Hourly/Daily)"] ::: transform
-        D5["AQI Calculation<br>(Indian NAQI)"] ::: transform
+        D1["Timestamp Normalization<br>(UTC Flooring)"]
+        D2["Station & Unit<br>Normalization"]
+        D3["Pollution & Weather Join<br>by City/Station/Time"]
+        D4["Pollutant Aggregation<br>(Hourly/Daily)"]
+        D5["AQI Calculation<br>(Indian NAQI)"]
     end
 
     %% VALIDATION LAYER
     subgraph Validation_Layer [5. VALIDATION]
-        E1["Range Checks<br>(e.g., negative values)"] ::: validate
-        E2["Missing-Period Checks"] ::: validate
-        E3["Duplicate Removal<br>(Unique Keys)"] ::: validate
-        E4[("data/rejected/<br>Rejected Records CSV")] ::: validate
+        E1["Range Checks<br>(e.g., negative values)"]
+        E2["Missing-Period Checks"]
+        E3["Duplicate Removal<br>(Unique Keys)"]
+        E4[("data/rejected/<br>Rejected Records CSV")]
     end
 
     %% STORAGE LAYER
     subgraph Storage_Layer [6. STORAGE LAYER - PostgreSQL]
-        F1[("(aqi_db)")] ::: store
-        F2["stations table"] ::: store
-        F3["hourly_air_quality table"] ::: store
-        F4["daily_aqi table"] ::: store
-        F5["daily_city_aqi table"] ::: store
+        F1[("(aqi_db)")]
+        F2["stations table"]
+        F3["hourly_air_quality table"]
+        F4["daily_aqi table"]
+        F5["daily_city_aqi table"]
     end
 
     %% ANALYTICS & PRESENTATION LAYER
     subgraph Presentation_Layer [7. ANALYTICS / PRESENTATION]
-        G1["SQL Analytical Queries"] ::: analytic
-        G2["Streamlit Dashboard<br>- City Analysis<br>- Station Analysis<br>- AQI Trends<br>- Weather Relationships"] ::: analytic
+        G1["SQL Analytical Queries"]
+        G2["Streamlit Dashboard<br>- City Analysis<br>- Station Analysis<br>- AQI Trends<br>- Weather Relationships"]
     end
     
     %% FUTURE MLOPS EXTENSION
     subgraph Future_Layer [Part 2 - Future MLOps Extension]
-        H1["Machine Learning Models<br>AQI Prediction"] ::: future
-        H2["MLflow Tracking"] ::: future
-        H3["FastAPI Model Serving"] ::: future
-        H4["Docker Containerization"] ::: future
+        H1["Machine Learning Models<br>AQI Prediction"]
+        H2["MLflow Tracking"]
+        H3["FastAPI Model Serving"]
+        H4["Docker Containerization"]
     end
 
     %% CONNECTIONS
@@ -102,3 +102,13 @@ flowchart TD
     
     G1 -.-> H1
     G2 -.-> H1
+
+    %% APPLY CLASSES
+    class A1,A2 source;
+    class B1,B2 ingest;
+    class C1,C2,C3 raw;
+    class D1,D2,D3,D4,D5 transform;
+    class E1,E2,E3,E4 validate;
+    class F1,F2,F3,F4,F5 store;
+    class G1,G2 analytic;
+    class H1,H2,H3,H4 future;
