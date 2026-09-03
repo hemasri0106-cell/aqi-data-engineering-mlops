@@ -10,61 +10,61 @@ flowchart TD
 
     %% SOURCE LAYER
     subgraph Source_Layer [1. SOURCE LAYER]
-        A1[OpenAQ API v3\nPollution Data] ::: source
-        A2[Open-Meteo API v1\nWeather Data] ::: source
+        A1["OpenAQ API v3<br>Pollution Data"] ::: source
+        A2["Open-Meteo API v1<br>Weather Data"] ::: source
     end
 
     %% INGESTION LAYER
     subgraph Ingestion_Layer [2. INGESTION LAYER - Airflow Orchestrated]
-        B1[Python Requests / Pandas\nPollution Collector] ::: ingest
-        B2[Python Requests / Pandas\nWeather Collector] ::: ingest
+        B1["Python Requests / Pandas<br>Pollution Collector"] ::: ingest
+        B2["Python Requests / Pandas<br>Weather Collector"] ::: ingest
     end
 
     %% RAW LANDING LAYER
     subgraph Raw_Landing_Layer [3. RAW LANDING LAYER]
-        C1[(data/raw/pollution/\nRaw JSON)] ::: raw
-        C2[(data/raw/weather/\nRaw JSON)] ::: raw
-        C3[Extraction Metadata & Logs] ::: raw
+        C1[("data/raw/pollution/<br>Raw JSON")] ::: raw
+        C2[("data/raw/weather/<br>Raw JSON")] ::: raw
+        C3["Extraction Metadata & Logs"] ::: raw
     end
 
     %% STAGING & TRANSFORMATION LAYER
     subgraph Transformation_Layer [4. STAGING / TRANSFORMATION]
-        D1[Timestamp Normalization\n(UTC Flooring)] ::: transform
-        D2[Station & Unit\nNormalization] ::: transform
-        D3[Pollution & Weather Join\nby City/Station/Time] ::: transform
-        D4[Pollutant Aggregation\n(Hourly/Daily)] ::: transform
-        D5[AQI Calculation\n(Indian NAQI)] ::: transform
+        D1["Timestamp Normalization<br>(UTC Flooring)"] ::: transform
+        D2["Station & Unit<br>Normalization"] ::: transform
+        D3["Pollution & Weather Join<br>by City/Station/Time"] ::: transform
+        D4["Pollutant Aggregation<br>(Hourly/Daily)"] ::: transform
+        D5["AQI Calculation<br>(Indian NAQI)"] ::: transform
     end
 
     %% VALIDATION LAYER
     subgraph Validation_Layer [5. VALIDATION]
-        E1[Range Checks\n(e.g., negative values)] ::: validate
-        E2[Missing-Period Checks] ::: validate
-        E3[Duplicate Removal\n(Unique Keys)] ::: validate
-        E4[(data/rejected/\nRejected Records CSV)] ::: validate
+        E1["Range Checks<br>(e.g., negative values)"] ::: validate
+        E2["Missing-Period Checks"] ::: validate
+        E3["Duplicate Removal<br>(Unique Keys)"] ::: validate
+        E4[("data/rejected/<br>Rejected Records CSV")] ::: validate
     end
 
     %% STORAGE LAYER
     subgraph Storage_Layer [6. STORAGE LAYER - PostgreSQL]
-        F1[(aqi_db)] ::: store
-        F2[stations table] ::: store
-        F3[hourly_air_quality table] ::: store
-        F4[daily_aqi table] ::: store
-        F5[daily_city_aqi table] ::: store
+        F1[("(aqi_db)")] ::: store
+        F2["stations table"] ::: store
+        F3["hourly_air_quality table"] ::: store
+        F4["daily_aqi table"] ::: store
+        F5["daily_city_aqi table"] ::: store
     end
 
     %% ANALYTICS & PRESENTATION LAYER
     subgraph Presentation_Layer [7. ANALYTICS / PRESENTATION]
-        G1[SQL Analytical Queries] ::: analytic
-        G2[Streamlit Dashboard\n- City Analysis\n- Station Analysis\n- AQI Trends\n- Weather Relationships] ::: analytic
+        G1["SQL Analytical Queries"] ::: analytic
+        G2["Streamlit Dashboard<br>- City Analysis<br>- Station Analysis<br>- AQI Trends<br>- Weather Relationships"] ::: analytic
     end
     
     %% FUTURE MLOPS EXTENSION
     subgraph Future_Layer [Part 2 - Future MLOps Extension]
-        H1[Machine Learning Models\nAQI Prediction] ::: future
-        H2[MLflow Tracking] ::: future
-        H3[FastAPI Model Serving] ::: future
-        H4[Docker Containerization] ::: future
+        H1["Machine Learning Models<br>AQI Prediction"] ::: future
+        H2["MLflow Tracking"] ::: future
+        H3["FastAPI Model Serving"] ::: future
+        H4["Docker Containerization"] ::: future
     end
 
     %% CONNECTIONS
