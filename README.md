@@ -17,7 +17,16 @@ The data pipeline follows a classic ETL (Extract, Transform, Load) architecture 
 4. **Storage**: Idempotent upserts into a relational PostgreSQL database.
 5. **Presentation**: A Streamlit web dashboard querying the analytical PostgreSQL tables.
 
-*See [`docs/architecture_diagram.mermaid`](docs/architecture_diagram.mermaid) for the visual pipeline flow.*
+```mermaid
+flowchart TD
+    A[Public APIs<br/>OpenAQ & Open-Meteo] -->|JSON| B(Airflow Ingestion)
+    B --> C[(Raw Data Lake)]
+    C --> D(Pandas Transformation<br/>& Validation)
+    D --> E[(PostgreSQL<br/>Analytical Tables)]
+    E --> F[Streamlit Dashboard]
+```
+
+*See [`docs/architecture_diagram.mermaid`](docs/architecture_diagram.mermaid) for a more detailed, layer-by-layer visual pipeline flow.*
 
 ## 3. Data Sources
 
