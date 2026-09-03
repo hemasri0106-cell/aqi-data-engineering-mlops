@@ -1,0 +1,13 @@
+pandas==2.2.1
+requests==2.31.0
+python-dotenv==1.0.1
+SQLAlchemy==2.0.28
+psycopg2-binary==2.9.9
+streamlit==1.32.2
+plotly==5.20.0
+
+# Note on Apache Airflow:
+# Airflow is typically installed with constraints based on the python version.
+# For local development, apache-airflow==2.8.3 (or similar) is used, but it's often best 
+# installed via pip with the constraints file provided by the Airflow project.
+apache-airflow==2.8.3

@@ -1,0 +1,94 @@
+{
+  "stations": [
+    {
+      "city": "Delhi",
+      "station_name": "R K Puram, Delhi - DPCC",
+      "location_id": 17,
+      "source": "DPCC",
+      "latitude": 28.563262,
+      "longitude": 77.186937,
+      "pollutants": ["pm25", "no2"]
+    },
+    {
+      "city": "Delhi",
+      "station_name": "Sirifort, Delhi - CPCB",
+      "location_id": 6997,
+      "source": "CPCB",
+      "latitude": 28.5504249,
+      "longitude": 77.2159377,
+      "pollutants": ["pm25", "no2"]
+    },
+    {
+      "city": "Mumbai",
+      "station_name": "Bandra, Mumbai - MPCB",
+      "location_id": 7014,
+      "source": "MPCB",
+      "latitude": 19.0553754,
+      "longitude": 72.8402241,
+      "pollutants": ["pm25", "no2"]
+    },
+    {
+      "city": "Mumbai",
+      "station_name": "Sion, Mumbai - MPCB",
+      "location_id": 7000,
+      "source": "MPCB",
+      "latitude": 19.0487042,
+      "longitude": 72.8631165,
+      "pollutants": ["pm25", "no2"]
+    },
+    {
+      "city": "Bengaluru",
+      "station_name": "Hombegowda Nagar, Bengaluru - KSPCB",
+      "location_id": 6982,
+      "source": "KSPCB",
+      "latitude": 12.9366657,
+      "longitude": 77.5937198,
+      "pollutants": ["pm25", "no2"]
+    },
+    {
+      "city": "Bengaluru",
+      "station_name": "Peenya, Bengaluru - CPCB",
+      "location_id": 6979,
+      "source": "CPCB",
+      "latitude": 13.02702,
+      "longitude": 77.52023,
+      "pollutants": ["pm25", "no2"]
+    },
+    {
+      "city": "Chennai",
+      "station_name": "Velachery Res. Area, Chennai - CPCB",
+      "location_id": 6976,
+      "source": "CPCB",
+      "latitude": 12.980665,
+      "longitude": 80.222718,
+      "pollutants": ["pm25", "no2"]
+    },
+    {
+      "city": "Chennai",
+      "station_name": "Alandur Bus Depot, Chennai - CPCB",
+      "location_id": 6978,
+      "source": "CPCB",
+      "latitude": 12.999554,
+      "longitude": 80.19069,
+      "pollutants": ["pm25", "no2"]
+    },
+    {
+      "city": "Kolkata",
+      "station_name": "Rabindra Bharati University, Kolkata - WBPCB",
+      "location_id": 6977,
+      "source": "WBPCB",
+      "latitude": 22.627874,
+      "longitude": 88.3804,
+      "pollutants": ["pm25", "no2"]
+    },
+    {
+      "city": "Kolkata",
+      "station_name": "Victoria, Kolkata - WBPCB",
+      "location_id": 6975,
+      "source": "WBPCB",
+      "latitude": 22.544808,
+      "longitude": 88.340369,
+      "pollutants": ["pm25", "no2"]
+    }
+  ]
+}
