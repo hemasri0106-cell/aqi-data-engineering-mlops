@@ -115,14 +115,15 @@ python src/ingestion/openmeteo_ingest.py
 
 ## 9. Run Airflow
 
-The entire pipeline is orchestrated via Apache Airflow. In this project (due to Windows compatibility), Airflow runs in an isolated Python 3.10 environment (`.airflow_venv`) and triggers the project scripts.
+The entire pipeline is orchestrated via Apache Airflow 3. Due to Windows compatibility, Airflow is installed in a completely isolated WSL2 Ubuntu Python 3.14 environment, and uses Windows interop to trigger the native Windows project scripts.
 
-To run the end-to-end Airflow DAG locally:
+To run the end-to-end Airflow DAG locally (run this from your Windows terminal):
 
 ```powershell
-$env:AIRFLOW_HOME="$PWD\airflow_home"
-.\.airflow_venv\Scripts\airflow.exe dags test aqi_data_pipeline $(Get-Date -Format "yyyy-MM-dd") --subdir dags
+wsl -e bash -c "source ~/airflow-venv/bin/activate && export AIRFLOW_HOME=~/airflow && airflow standalone"
 ```
+
+Once Airflow starts, navigate to `http://localhost:8080` in your browser and trigger the `aqi_data_pipeline` DAG.
 
 ## 10. Run Dashboard
 
