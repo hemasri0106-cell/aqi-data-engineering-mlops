@@ -1,0 +1,54 @@
+
+    ML Dataset Verification Report
+    ================================
+    Total Historical Period: 2025-02-18 to 2026-09-23
+    Number of Stations: 5
+    Number of Cities: 4
+    Number of ML Rows (after target shifting & dropping missing targets): 606
+    Number of Features: 29  # Excluding date, station, target cols
+    
+    Target Statistics (Next Day AQI):
+    Mean: 155.38
+    Min: 8.333333333333334
+    Max: 426.7743658210948
+    
+    Missing Values in Features:
+    date                  0
+station_id            0
+city                  0
+pm25                  0
+no2                   0
+aqi                   0
+aqi_category          0
+temperature_c        12
+humidity_pct         12
+precipitation_mm     12
+wind_speed_kmh       12
+day_of_week           0
+month                 0
+aqi_lag_1            12
+aqi_lag_2            18
+aqi_lag_3            23
+pm25_lag_1           12
+pm25_lag_2           18
+pm25_lag_3           23
+no2_lag_1            12
+no2_lag_2            18
+no2_lag_3            23
+aqi_roll_mean_3d      5
+aqi_roll_mean_7d      5
+aqi_roll_std_7d      11
+pm25_roll_mean_3d     5
+pm25_roll_mean_7d     5
+pm25_roll_std_7d     11
+no2_roll_mean_3d      5
+no2_roll_mean_7d      5
+no2_roll_std_7d      11
+    
+    Date Ranges:
+    Train: 2025-02-18 to 2026-05-05 (424 rows)
+    Val:   2026-05-06 to 2026-08-06 (91 rows)
+    Test:  2026-08-09 to 2026-09-23 (91 rows)
+    
+    Leakage Check: Target dates are exactly one day after feature dates (enforced by shift(-1) on contiguous date index).
+    

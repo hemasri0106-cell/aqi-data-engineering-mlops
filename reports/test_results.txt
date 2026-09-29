@@ -1,0 +1,13 @@
+FINAL TEST METRICS
+====================
+Regression:
+MAE: 26.9596
+RMSE: 35.6109
+R2: 0.2289
+
+Classification:
+Accuracy: 0.6264
+Macro Precision: 0.4935
+Macro Recall: 0.4090
+Macro F1: 0.4027
+Weighted F1: 0.6105

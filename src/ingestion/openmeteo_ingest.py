@@ -4,6 +4,7 @@ import json
 import logging
 from datetime import datetime, timezone
 import requests
+import time
 from dotenv import load_dotenv
 from src.config import TARGET_CITIES, START_DATE_YMD, END_DATE_YMD
 
@@ -18,7 +19,7 @@ logging.basicConfig(
 logger = logging.getLogger('openmeteo_ingestion')
 
 load_dotenv()
-OPEN_METEO_API_URL = os.getenv('OPEN_METEO_API_URL', 'https://api.open-meteo.com/v1/forecast')
+OPEN_METEO_API_URL = os.getenv('OPEN_METEO_API_URL', 'https://archive-api.open-meteo.com/v1/archive')
 RAW_DATA_DIR = os.path.join(os.path.dirname(os.path.dirname(os.path.dirname(__file__))), 'data', 'raw', 'weather')
 
 def fetch_weather_data(lat, lon, start_date, end_date):
@@ -43,6 +44,7 @@ def main():
     os.makedirs(RAW_DATA_DIR, exist_ok=True)
     
     for city_config in TARGET_CITIES:
+        time.sleep(2)
         city = city_config['city']
         lat = city_config['latitude']
         lon = city_config['longitude']

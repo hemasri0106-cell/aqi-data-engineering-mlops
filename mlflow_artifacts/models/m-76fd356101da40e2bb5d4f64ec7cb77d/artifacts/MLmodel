@@ -1,0 +1,56 @@
+artifact_path: file:///C:\Users\hemas\OneDrive\Desktop\mlops project\AQI-Prediction-Project/mlflow_artifacts/models/m-76fd356101da40e2bb5d4f64ec7cb77d/artifacts
+flavors:
+  python_function:
+    env:
+      conda: conda.yaml
+      virtualenv: python_env.yaml
+    loader_module: mlflow.sklearn
+    model_path: model.pkl
+    predict_fn: predict
+    python_version: 3.14.7
+  sklearn:
+    code: null
+    pickled_model: model.pkl
+    serialization_format: cloudpickle
+    sklearn_version: 1.9.1
+    skops_trusted_types: null
+is_signature_from_type_hint: false
+mlflow_version: 3.16.1
+model_id: m-76fd356101da40e2bb5d4f64ec7cb77d
+model_size_bytes: 3678914
+model_uuid: m-76fd356101da40e2bb5d4f64ec7cb77d
+prompts: null
+run_id: 19a22133ffdb48f6a8c559019ce09f4a
+saved_input_example_info:
+  artifact_path: input_example.json
+  pandas_orient: split
+  serving_input_path: serving_input_example.json
+  type: dataframe
+signature:
+  inputs: '[{"type": "long", "name": "station_id", "required": true}, {"type": "string",
+    "name": "city", "required": true}, {"type": "double", "name": "pm25", "required":
+    true}, {"type": "double", "name": "no2", "required": true}, {"type": "double",
+    "name": "aqi", "required": true}, {"type": "string", "name": "aqi_category", "required":
+    true}, {"type": "double", "name": "temperature_c", "required": true}, {"type":
+    "double", "name": "humidity_pct", "required": true}, {"type": "double", "name":
+    "precipitation_mm", "required": true}, {"type": "double", "name": "wind_speed_kmh",
+    "required": true}, {"type": "double", "name": "day_of_week", "required": true},
+    {"type": "double", "name": "month", "required": true}, {"type": "double", "name":
+    "aqi_lag_1", "required": false}, {"type": "double", "name": "aqi_lag_2", "required":
+    false}, {"type": "double", "name": "aqi_lag_3", "required": false}, {"type": "double",
+    "name": "pm25_lag_1", "required": false}, {"type": "double", "name": "pm25_lag_2",
+    "required": false}, {"type": "double", "name": "pm25_lag_3", "required": false},
+    {"type": "double", "name": "no2_lag_1", "required": false}, {"type": "double",
+    "name": "no2_lag_2", "required": false}, {"type": "double", "name": "no2_lag_3",
+    "required": false}, {"type": "double", "name": "aqi_roll_mean_3d", "required":
+    false}, {"type": "double", "name": "aqi_roll_mean_7d", "required": false}, {"type":
+    "double", "name": "aqi_roll_std_7d", "required": false}, {"type": "double", "name":
+    "pm25_roll_mean_3d", "required": false}, {"type": "double", "name": "pm25_roll_mean_7d",
+    "required": false}, {"type": "double", "name": "pm25_roll_std_7d", "required":
+    false}, {"type": "double", "name": "no2_roll_mean_3d", "required": false}, {"type":
+    "double", "name": "no2_roll_mean_7d", "required": false}, {"type": "double", "name":
+    "no2_roll_std_7d", "required": false}]'
+  outputs: '[{"type": "tensor", "tensor-spec": {"dtype": "float64", "shape": [-1]}}]'
+  params: null
+type_hint_from_example: false
+utc_time_created: '2026-09-28 15:16:26.344427'

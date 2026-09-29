@@ -12,10 +12,10 @@ except Exception as e:
     print(f"Warning: Failed to load {STATIONS_CONFIG_PATH}: {e}")
     TARGET_CITIES = []
 
-# Explicit date range for reproducibility using timezone-aware UTC datetime.
-# Using a 7-day window.
+# Explicit date range for historical ML data extraction
+# From Jan 1, 2025 to today
 END_DATE = datetime.now(timezone.utc).replace(hour=0, minute=0, second=0, microsecond=0)
-START_DATE = END_DATE - timedelta(days=7)
+START_DATE = datetime(2025, 1, 1, tzinfo=timezone.utc)
 
 # Format dates for APIs
 START_DATE_STR = START_DATE.isoformat()

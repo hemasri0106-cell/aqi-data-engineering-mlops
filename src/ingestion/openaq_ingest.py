@@ -39,22 +39,47 @@ def fetch_location_sensors(location_id):
         logger.error(f"Error fetching sensors for location {location_id}: {e}")
         return [], None
 
-def fetch_sensor_measurements(sensor_id, start_date, end_date):
+from datetime import datetime, timezone, timedelta
+
+def fetch_sensor_measurements(sensor_id, start_date_str, end_date_str):
     url = f"https://api.openaq.org/v3/sensors/{sensor_id}/measurements"
     headers = {"X-API-Key": OPENAQ_API_KEY}
-    # Request specific date range
-    params = {
-        "datetime_from": start_date,
-        "datetime_to": end_date,
-        "limit": 1000 # Enough for 7 days of hourly data (168)
-    }
-    try:
-        response = requests.get(url, headers=headers, params=params, timeout=15)
-        response.raise_for_status()
-        return response.json().get('results', [])
-    except requests.exceptions.RequestException as e:
-        logger.error(f"Error fetching measurements for sensor {sensor_id}: {e}")
-        return []
+    
+    start_dt = datetime.fromisoformat(start_date_str.replace("Z", "+00:00"))
+    end_dt = datetime.fromisoformat(end_date_str.replace("Z", "+00:00"))
+    
+    all_results = []
+    
+    current_start = start_dt
+    while current_start < end_dt:
+        current_end = min(current_start + timedelta(days=30), end_dt)
+        
+        page = 1
+        while True:
+            params = {
+                "datetime_from": current_start.isoformat(),
+                "datetime_to": current_end.isoformat(),
+                "limit": 1000,
+                "page": page
+            }
+            try:
+                response = requests.get(url, headers=headers, params=params, timeout=30)
+                response.raise_for_status()
+                data = response.json()
+                results = data.get('results', [])
+                if not results:
+                    break
+                all_results.extend(results)
+                if len(results) < 1000:
+                    break
+                page += 1
+            except requests.exceptions.RequestException as e:
+                logger.error(f"Error fetching measurements for sensor {sensor_id} on page {page} for dates {current_start} to {current_end}: {e}")
+                break
+                
+        current_start = current_end
+            
+    return all_results
 
 def main():
     logger.info(f"Starting OpenAQ ingestion for {len(TARGET_CITIES)} cities from {START_DATE_STR} to {END_DATE_STR}")

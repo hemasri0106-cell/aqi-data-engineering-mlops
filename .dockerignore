@@ -1,0 +1,14 @@
+.env
+.venv
+.airflow_venv
+__pycache__
+.git
+logs/
+mlflow_artifacts/
+scratch_*.py
+data/
+dags/
+models/
+notebooks/
+reports/
+tests/
