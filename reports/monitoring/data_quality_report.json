@@ -1,0 +1,149 @@
+{
+    "timestamp": "2026-09-29T02:55:52.934111",
+    "total_rows": 606,
+    "features": {
+        "date": {
+            "missing_pct": 0.0,
+            "missing_status": "PASS"
+        },
+        "station_id": {
+            "missing_pct": 0.0,
+            "missing_status": "PASS"
+        },
+        "city": {
+            "missing_pct": 0.0,
+            "missing_status": "PASS"
+        },
+        "pm25": {
+            "missing_pct": 0.0,
+            "missing_status": "PASS",
+            "negative_count": 0,
+            "negative_status": "PASS"
+        },
+        "no2": {
+            "missing_pct": 0.0,
+            "missing_status": "PASS",
+            "negative_count": 0,
+            "negative_status": "PASS"
+        },
+        "aqi": {
+            "missing_pct": 0.0,
+            "missing_status": "PASS",
+            "negative_count": 0,
+            "negative_status": "PASS"
+        },
+        "aqi_category": {
+            "missing_pct": 0.0,
+            "missing_status": "PASS",
+            "invalid_categories": [],
+            "category_status": "PASS"
+        },
+        "temperature_c": {
+            "missing_pct": 1.9801980198019802,
+            "missing_status": "PASS"
+        },
+        "humidity_pct": {
+            "missing_pct": 1.9801980198019802,
+            "missing_status": "PASS"
+        },
+        "precipitation_mm": {
+            "missing_pct": 1.9801980198019802,
+            "missing_status": "PASS"
+        },
+        "wind_speed_kmh": {
+            "missing_pct": 1.9801980198019802,
+            "missing_status": "PASS"
+        },
+        "day_of_week": {
+            "missing_pct": 0.0,
+            "missing_status": "PASS"
+        },
+        "month": {
+            "missing_pct": 0.0,
+            "missing_status": "PASS"
+        },
+        "target_next_day_aqi": {
+            "missing_pct": 0.0,
+            "missing_status": "PASS"
+        },
+        "target_next_day_category": {
+            "missing_pct": 0.0,
+            "missing_status": "PASS"
+        },
+        "aqi_lag_1": {
+            "missing_pct": 1.9801980198019802,
+            "missing_status": "PASS"
+        },
+        "aqi_lag_2": {
+            "missing_pct": 2.9702970297029703,
+            "missing_status": "PASS"
+        },
+        "aqi_lag_3": {
+            "missing_pct": 3.7953795379537953,
+            "missing_status": "PASS"
+        },
+        "pm25_lag_1": {
+            "missing_pct": 1.9801980198019802,
+            "missing_status": "PASS"
+        },
+        "pm25_lag_2": {
+            "missing_pct": 2.9702970297029703,
+            "missing_status": "PASS"
+        },
+        "pm25_lag_3": {
+            "missing_pct": 3.7953795379537953,
+            "missing_status": "PASS"
+        },
+        "no2_lag_1": {
+            "missing_pct": 1.9801980198019802,
+            "missing_status": "PASS"
+        },
+        "no2_lag_2": {
+            "missing_pct": 2.9702970297029703,
+            "missing_status": "PASS"
+        },
+        "no2_lag_3": {
+            "missing_pct": 3.7953795379537953,
+            "missing_status": "PASS"
+        },
+        "aqi_roll_mean_3d": {
+            "missing_pct": 0.825082508250825,
+            "missing_status": "PASS"
+        },
+        "aqi_roll_mean_7d": {
+            "missing_pct": 0.825082508250825,
+            "missing_status": "PASS"
+        },
+        "aqi_roll_std_7d": {
+            "missing_pct": 1.8151815181518154,
+            "missing_status": "PASS"
+        },
+        "pm25_roll_mean_3d": {
+            "missing_pct": 0.825082508250825,
+            "missing_status": "PASS"
+        },
+        "pm25_roll_mean_7d": {
+            "missing_pct": 0.825082508250825,
+            "missing_status": "PASS"
+        },
+        "pm25_roll_std_7d": {
+            "missing_pct": 1.8151815181518154,
+            "missing_status": "PASS"
+        },
+        "no2_roll_mean_3d": {
+            "missing_pct": 0.825082508250825,
+            "missing_status": "PASS"
+        },
+        "no2_roll_mean_7d": {
+            "missing_pct": 0.825082508250825,
+            "missing_status": "PASS"
+        },
+        "no2_roll_std_7d": {
+            "missing_pct": 1.8151815181518154,
+            "missing_status": "PASS"
+        }
+    },
+    "overall_status": "PASS",
+    "duplicate_station_dates": 0,
+    "duplicate_status": "PASS"
+}

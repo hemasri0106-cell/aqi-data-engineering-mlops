@@ -351,3 +351,104 @@ st.markdown("""
 - **Weather**: [Open-Meteo](https://open-meteo.com/)
 - **Database**: Local PostgreSQL (`aqi_db`)
 """)
+
+# ==========================================
+# Next-Day AQI Prediction (Phase 5)
+# ==========================================
+st.divider()
+st.header("🔮 Next-Day AQI Prediction")
+
+if selected_station_name == "All Stations":
+    st.info("Please select a specific Station from the sidebar to generate a prediction.")
+else:
+    st.markdown(f"**Selected Station:** {selected_station_name} ({selected_city})")
+    
+    if st.button("Predict Next-Day AQI"):
+        with st.spinner("Fetching latest data and predicting..."):
+            try:
+                from src.ml.inference import predict_next_day
+                result = predict_next_day(selected_station_id)
+                
+                if "error" in result:
+                    st.error(f"Prediction Failed: {result['error']}")
+                else:
+                    st.success(f"Prediction generated successfully using data up to {result['latest_data_date']}!")
+                    
+                    st.markdown(f"### Prediction for Date: **{result['prediction_date']}**")
+                    
+                    col_pred1, col_pred2 = st.columns(2)
+                    col_pred1.metric("Predicted AQI (Regression)", f"{result['predicted_aqi']:.2f}")
+                    col_pred2.metric("Predicted Category (Classification)", result['predicted_category'])
+                    
+                    st.markdown("#### Model Versions:")
+                    st.markdown(f"- **Regression Model**: `AQI_Next_Day_AQI_Regression` (Version: {result['reg_model_version']})")
+                    st.markdown(f"- **Classification Model**: `AQI_Next_Day_Category_Classification` (Version: {result['clf_model_version']})")
+            except Exception as e:
+                st.error(f"An unexpected error occurred: {str(e)}")
+
+# ==========================================
+# System Monitoring View (Phase 5)
+# ==========================================
+st.divider()
+st.header("📊 System Monitoring")
+
+import json
+import os
+
+monitoring_dir = "reports/monitoring"
+
+col_m1, col_m2 = st.columns(2)
+
+with col_m1:
+    st.subheader("Data Quality")
+    dq_path = os.path.join(monitoring_dir, "data_quality_report.json")
+    if os.path.exists(dq_path):
+        with open(dq_path, "r") as f:
+            dq_report = json.load(f)
+        status_color = "green" if dq_report["overall_status"] == "PASS" else "red"
+        st.markdown(f"**Status:** :{status_color}[{dq_report['overall_status']}]")
+        st.markdown(f"**Last Checked:** {dq_report['timestamp']}")
+    else:
+        st.info("Data Quality report not found.")
+
+with col_m2:
+    st.subheader("Feature Drift")
+    drift_path = os.path.join(monitoring_dir, "drift_report.json")
+    if os.path.exists(drift_path):
+        with open(drift_path, "r") as f:
+            drift_report = json.load(f)
+        status_color = "green" if drift_report["overall_status"] == "PASS" else "orange" if drift_report["overall_status"] == "WARNING" else "red"
+        st.markdown(f"**Status:** :{status_color}[{drift_report['overall_status']}]")
+        st.markdown(f"**Method:** {drift_report.get('method', 'Kolmogorov-Smirnov Test')}")
+    else:
+        st.info("Feature Drift report not found.")
+
+st.subheader("Service Health")
+service_path = os.path.join(monitoring_dir, "service_metrics.json")
+if os.path.exists(service_path):
+    with open(service_path, "r") as f:
+        service_report = json.load(f)
+    
+    col_s1, col_s2, col_s3 = st.columns(3)
+    col_s1.metric("API Status", service_report["status"])
+    if service_report["latency_ms"] is not None:
+        col_s2.metric("Latency", f"{service_report['latency_ms']} ms")
+    else:
+        col_s2.metric("Latency", "N/A")
+    models_loaded = "Yes" if (service_report["regression_model_loaded"] and service_report["classification_model_loaded"]) else "No"
+    col_s3.metric("Models Loaded", models_loaded)
+else:
+    st.info("Service metrics report not found.")
+
+st.subheader("Retraining Status")
+retrain_path = os.path.join(monitoring_dir, "retraining_status.json")
+if os.path.exists(retrain_path):
+    with open(retrain_path, "r") as f:
+        retrain_report = json.load(f)
+    if retrain_report.get("retrain_suggested"):
+        st.warning("⚠️ Retraining is currently suggested based on monitoring criteria.")
+    else:
+        st.success("✅ Models are healthy. Retraining is not required at this time.")
+else:
+    st.info("Retraining status report not found.")
+

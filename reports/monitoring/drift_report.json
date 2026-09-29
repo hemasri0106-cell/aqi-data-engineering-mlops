@@ -1,0 +1,43 @@
+{
+    "timestamp": "2026-09-29T02:55:52.995538",
+    "method": "Kolmogorov-Smirnov Test",
+    "threshold_p_value": 0.05,
+    "features": {
+        "pm25": {
+            "ks_statistic": 0.46477987421383643,
+            "p_value": 4.771411921504074e-06,
+            "status": "DRIFT_DETECTED"
+        },
+        "no2": {
+            "ks_statistic": 0.3863207547169811,
+            "p_value": 0.0002863939339609216,
+            "status": "DRIFT_DETECTED"
+        },
+        "aqi": {
+            "ks_statistic": 0.46242138364779867,
+            "p_value": 5.467561141903451e-06,
+            "status": "DRIFT_DETECTED"
+        },
+        "temperature_c": {
+            "ks_statistic": 0.4202480782669462,
+            "p_value": 0.00014256536341640294,
+            "status": "DRIFT_DETECTED"
+        },
+        "humidity_pct": {
+            "ks_statistic": 0.4801712089447938,
+            "p_value": 6.827805876727249e-06,
+            "status": "DRIFT_DETECTED"
+        },
+        "precipitation_mm": {
+            "ks_statistic": 0.48672257162823196,
+            "p_value": 4.773187409543967e-06,
+            "status": "DRIFT_DETECTED"
+        },
+        "wind_speed_kmh": {
+            "ks_statistic": 0.21191474493361284,
+            "p_value": 0.175931742112573,
+            "status": "PASS"
+        }
+    },
+    "overall_status": "WARNING"
+}
